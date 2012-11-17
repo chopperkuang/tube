@@ -1,10 +1,10 @@
 
 products
-	name : String 
-	ideaCount: int, default : 0
-	userId: int
-	createdAt: Date, default: date.now()
-	updatedAt: Date
+	name : {type : String, trim : true },
+    ideaCount : {type : Number},
+    user: {type:Schema.ObjectId, ref:'User'},
+    createdAt:{type:Date, default:Date.now},
+    updatedAt:{type:Date, default:Date.now}
 	
 
 ideas 
@@ -21,6 +21,12 @@ comments
 	user: Object, ref: Users
 	idea: Object, ref:Idea
 	createdAt: Date, default: Date.now()
-	
+
+users
+	name: String
+	email: String
+	password: String
+	createdAt  : {type : Date, default : Date.now}
+	updatedAt  : {type : Date, default : Date.now}
 
 
