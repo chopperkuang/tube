@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
   , Article = mongoose.model('Article')
+  , Product = mongoose.model('Product')
   , async = require('async');
 
 
@@ -33,5 +34,8 @@ module.exports = function (app, passport, auth) {
     var categories = require('../app/controllers/categories');
     app.get('/categories', categories.index);
 
+    //products rotes
+    var products = require('../app/controllers/products.js');
+    app.get('/products', products.index);
 	app.get('/', articles.index);
 }
