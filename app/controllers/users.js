@@ -15,8 +15,6 @@ exports.logout = function(req, res) {
 }
 
 exports.create = function (req, res) {
-    console.log("create .... ");
-    console.log(req.body);
     var user = new User({name: req.query.name, email: req.query.email, password: req.query.password});
     user.save(function (err) {
         if (err) return res.jsonp({status:'fail', message : '注册失败', errors:err.errors});
