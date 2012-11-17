@@ -2,31 +2,25 @@ var mongoose = require('mongoose')
     , User = mongoose.model('User');
 
 exports.login = function (req, res) {
-    res.render('users/login', {layout:'layouts/user_layout', title:'登录' });
-}
-
-exports.signup = function (req, res) {
-    res.render('users/signup', {layout:'layouts/user_layout', title:'注册' });
+    res.jsonp({status:'fail', message: '请先登录!'});
 }
 
 exports.session = function (req, res) {
-    res.redirect('/');
+    res.jsonp({status:'ok'});
 }
 
 exports.logout = function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.jsonp({status:'ok'});
 }
 
 exports.create = function (req, res) {
     console.log("create .... ");
     console.log(req.body);
-    var user = new User(req.body);
+    var user = new User({name: req.query.name, email: req.query.email, password: req.query.password});
     user.save(function (err) {
-        if (err) return res.render('users/signup', {errors:err.errors});
-        req.login(user, function (err) {
-            if (err) return next(err);
-            return res.redirect('/');
-        });
+        if (err) return res.jsonp({status:'fail', message : '注册失败', errors:err.errors});
+
+        res.jsonp({status:'ok'});
     });
 }

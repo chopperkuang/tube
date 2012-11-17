@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 
 var ProductSchema = new Schema({
     name : {type:String, trim:true },
-    ideaCount : {type : Number},
+    ideaCount : {type : Number, default : 0},
     user: {type:Schema.ObjectId, ref:'User'},
     createdAt:{type:Date, default:Date.now},
     updatedAt:{type:Date, default:Date.now}

@@ -13,7 +13,6 @@ var UserSchema = new Schema({
 })
 
 UserSchema.method('authenticate', function(plainText) {
-	console.log('auth....' + plainText + "-" + this.password)
 	return plainText == this.password
 })
 
