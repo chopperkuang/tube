@@ -1,5 +1,4 @@
 var express = require('express')
-    , expressLayouts = require('express-ejs-layouts')
     , mongoStore = require('connect-mongodb')
     , moment = require('moment');
 
@@ -12,10 +11,10 @@ exports.boot = function (app, config, passport) {
 function bootApplication(app, config, passport) {
 
     app.set('showStackError', true);
-    app.use(express.static(__dirname + '/public'));
+    //app.use(express.static(__dirname + '/public'));
 
-    app.set('views', __dirname + '/app/views');
-    app.set('view engine', 'ejs');
+    //app.set('views', __dirname + '/app/views');
+    //app.set('view engine', 'ejs');
 
     app.configure(function () {
         // dynamic helpers
@@ -33,9 +32,6 @@ function bootApplication(app, config, passport) {
 
         app.use(express.favicon());
         app.use(express.logger('dev'));
-
-        app.use(expressLayouts);
-        app.set('layout', 'layouts/layout');
 
         app.use(express.cookieParser());
 
